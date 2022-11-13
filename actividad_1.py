@@ -1,5 +1,7 @@
 #importamos numpy
 import numpy as np
 
-print("pruebas")
+x = np.arange(15, dtype=np.int64).reshape(3, 5)
+
+print(x)
 
