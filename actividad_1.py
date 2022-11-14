@@ -11,6 +11,7 @@ for i in range(len(dias)):
 for i in range(len(referencias)):
     for t in range(7):
         referencias[i, t]=0
+        pass
 
 if __name__=='__main__':
     pass
