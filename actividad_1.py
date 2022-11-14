@@ -7,6 +7,7 @@ referencias = np.arange(35, dtype=np.int64).reshape(5, 7)
 for i in range(len(dias)):
     for t in range(7):
         dias[i, t]=0
+        pass
 
 for i in range(len(referencias)):
     for t in range(7):
