@@ -1,7 +1,17 @@
 #importamos numpy
 import numpy as np
 
-x = np.arange(15, dtype=np.int64).reshape(3, 5)
+dias = np.arange(35, dtype=np.int64).reshape(5, 7)
+referencias = np.arange(35, dtype=np.int64).reshape(5, 7)
 
-print(x)
+for i in range(len(dias)):
+    for t in range(7):
+        dias[i, t]=0
+
+for i in range(len(referencias)):
+    for t in range(7):
+        referencias[i, t]=0
+
+if __name__=='__main__':
+    pass
 
