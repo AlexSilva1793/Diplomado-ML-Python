@@ -1,4 +1,4 @@
-#importamos numpy
+#importamos librerias 
 import random
 import numpy as np
 
@@ -8,48 +8,39 @@ referencia y día teniendo en cuenta que las ventas son de una semana
 de lunes a viernes. Adicional determinar la venta mayor y la venta
 menor indicando la referencia"""
 
-ingresarVentas=True
-dias = np.zeros(35, dtype=np.int64).reshape(7, 5)
+diasReferencia = np.zeros(35, dtype=np.int64).reshape(7, 5)
 referencias = ['papas fritas','papas fritas 1', 'papas fritas 2','papa fritas 3','papa fritas 4','papa fritas 5','papa fritas 6']
-"""
-0-luneas
-1-martes
-2-miercoles
-3-jueves
-4-viernes
-"""
-for i in range(len(dias)):
-    for g in referencias:
-        print(f"por favor ingresa un valor {g}:")
-        while(ingresarVentas):
-            for t in range(5):
-               dias[i,t]=random.randint(1, 100)
-            ventasTotales={g:np.sum(dias[t])}
-            ingresarVentas=False
-        #print(f"Las ventas para la referencia {referencias[i]} fueron en total {np.sum(dias[i])}")
-        print(ventasTotales)
-        ingresarVentas=True
+dias=['Lunes', 'Martes','Miercoles','Jueves','Viernes']
 
-    
-def ventaMayorMenor(dias):
-    mayor = dias[0][0]
-    menor = dias[0][0]
-    for fila in dias:
-        for valor in fila:
-            if valor > mayor:
-                mayor = valor
-            if valor < menor:
-                menor = valor
-    print("De la matriz: ")
-    print(dias)
-    print(f"El menor es {menor} y el mayor es {mayor}")    
-        
-def ingresar():
-    pass
-    
+#ingresar ventas
+for i in range(len(diasReferencia)):
+    for g in referencias:
+        print(f"por favor ingresa las ventas para la refencia {g} :")
+        for t in range(5):
+            print(f"del dia {dias[t]} :")
+            diasReferencia[i,t]=random.randint(1, 10)
+            print(diasReferencia[i,t])
+
+#sumar ventas semanal por referencia
+p=0
+sumatoria=0
+ventasTotales={}
+for g in referencias:
+    for t in range(5):
+        sumatoria=sumatoria + diasReferencia[p,t]
+    ventasTotales.update({g:sumatoria})
+    sumatoria=0
+    p=p+1
+
+#encontrar la venta mayor y menor durante la semana
+print(ventasTotales)
+print(max(ventasTotales, key=ventasTotales.get) )
+print(min(ventasTotales, key=ventasTotales.get) )
+print([key for key, value in ventasTotales.items() if value == max(ventasTotales.values())])
+print([key for key, value in ventasTotales.items() if value == min(ventasTotales.values())])
 
 if __name__=='__main__':
-    ventaMayorMenor(dias)
+    pass
 
 
 
