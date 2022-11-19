@@ -95,27 +95,38 @@ def encontrarMayorMenor(ventasTotales):
     ventaMenor=[key for key, value in ventasTotales.items() if value == min(ventasTotales.values())]
     return ventaMayor,ventaMenor
 
+#encontrar mayor y menor en las ventas
+def encontrarMayorMenor():
+    pass
+
+#encontrar ventas de unidades por cada referencia en la semana
+def sumarUnidadesReferencias():
+    pass
+
+#encontrar ventas de pesos por cada referencia en la semana
+def sumarUnidadesReferencias():
+    pass
+
 def run():
     ingresar=ingresarVentas(diasReferencia,referencias,dias)
-    ventasPorValorDia=sumarVentasDiasP(ingresar[1])
-    ventasPorValorDiaU=sumarVentasDiasP(ingresar[1])
-    ventasPorValorDiaUT=sumarVentasDiasPU(ingresar[0])
-    ventasPorUnidadDia=sumarVentasDiasU(ingresar[0])
-    ventasTotalUnidadesU=ventasTotalUnidades(ingresar[0])
-    ventasTotalValorP=ventasTotalValor(ingresar[1])
-    print("registro unidades")
+    ventasPorValorDiaUnidades=sumarVentasDiasPU(ingresar[0])
+    ventasPorValorDiaVentas=sumarVentasDiasP(ingresar[1])
+    ventasTotalSemanaUnidades=ventasTotalUnidades(ingresar[0])
+    ventasTotalSemanaPesos=ventasTotalValor(ingresar[1])
+                                            
+    print("Registro unidades por referencia")
     print(ingresar[0])
-    print("registro valor")
+    print("Registro de valor por referencia")
     print(ingresar[1])
-    print("registro ventas por valor")
-    print(ventasPorValorDia)
-    print(ventasPorValorDiaUT)
-    print("registro ventas por unidad")
-    print(ventasPorUnidadDia)
-    print("total de unidades")
-    print(ventasTotalUnidadesU)
-    print("total de valor")
-    print(ventasTotalValorP)
+    print("Registro dias por total de unidades")
+    print(ventasPorValorDiaUnidades)
+    print("Registro dias por total de pesos")
+    print(ventasPorValorDiaVentas)
+    print("Total de unidades en la semana")
+    print(ventasTotalSemanaUnidades)
+    print("Total de Pesos en la semana")
+    print(ventasTotalSemanaPesos)
+    exit()
 
 if __name__=='__main__':
     run()
