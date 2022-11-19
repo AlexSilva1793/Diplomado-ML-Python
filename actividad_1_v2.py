@@ -97,15 +97,25 @@ def encontrarMayorMenor(ventasTotales):
 
 #encontrar mayor y menor en las ventas
 def encontrarMayorMenor():
+    print(f"\nValor total de ventas de cada referencia semanalmente:\n {totalValorReferenciaSemana}")
+    print("\nreferencia de papas mas vendida")
+    print([key for key, value in ventasTotales.items() if value == max(ventasTotales.values())]) #Max Ventas
+    print("\nreferencia de papas menos vendida")
+    print([key for key, value in ventasTotales.items() if value == min(ventasTotales.values())]) #Min Ventas
     pass
 
 #encontrar ventas de unidades por cada referencia en la semana
 def sumarUnidadesReferencias():
-    pass
+    #valor de ventas de cada referencia en la semana:
+    totalValorReferenciaSemana=""
+    totalUnidadReferencia=np.sum(diasReferencia, axis=1)
+
+    for j in range(len(diasReferencia)):
+        totalValorReferenciaSemana+=f"unidades referencia {referencias[j]} :{totalUnidadReferencia[j]} precio referencia {referenciasPrecio[referencias[j]]} total = {totalUnidadReferencia[j]*referenciasPrecio[referencias[j]]} \n "
+
+    return totalValorReferenciaSemana
 
 #encontrar ventas de pesos por cada referencia en la semana
-def sumarUnidadesReferencias():
-    pass
 
 def run():
     ingresar=ingresarVentas(diasReferencia,referencias,dias)
@@ -126,6 +136,7 @@ def run():
     print(ventasTotalSemanaUnidades)
     print("Total de Pesos en la semana")
     print(ventasTotalSemanaPesos)
+    
     exit()
 
 if __name__=='__main__':
