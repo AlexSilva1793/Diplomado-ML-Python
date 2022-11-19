@@ -88,9 +88,7 @@ def sumarVentasReferenciasP(diasReferenciaVentas):
     ventasReferenciasP={}
     for g in referencias:
         for t in range(5):
-            #print(f"referencia{g} -- dia{t}-- fila{p}")
             sumatoria=sumatoria + diasReferenciaVentas[p,t]
-        #print(f"referencia{g} -- dia{t}-- fila{p}--sumatoria{sumatoria}")
         ventasReferenciasP.update({g:sumatoria})
         sumatoria=0
         p+=1
@@ -147,10 +145,10 @@ def run():
     ventasTotalSemanaUnidades=ventasTotalUnidades(ingresar[0])
     ventasTotalSemanaPesos=ventasTotalValor(ingresar[1])
     ventaMenorMayor=encontrarMayorMenor(ventasPorValorReferenciaVentas)
-    print("Registro unidades por referencia",end="=>")
+    print("Registro unidades por referencia")
     print(ingresar[0])
     print("******************************************")
-    print("Registro de valor por referencia",end="=>")
+    print("Registro de valor por referencia")
     print(ingresar[1])
     print("******************************************")
     print("Registro dias por total de unidades",end="=>")
@@ -172,6 +170,16 @@ def run():
     print(ventasTotalSemanaPesos)
     print("******************************************")
     mostrarMenorMayorReferecia(ventaMenorMayor,ventasPorValorReferenciaVentas)
+    print("""
+          *******************************
+          |Integrantes:                 |
+          |Santiago Mancera Guerrero    |
+          |Yamith Andres Lopez Palacio  |
+          |Diego Fernando Cuellar Alviz |
+          |Sonia Milena Melo Garcia     |
+          |Eivar Alexander Silva Gaitan |
+          *******************************
+          """)
     exit()
     
 if __name__=='__main__':
