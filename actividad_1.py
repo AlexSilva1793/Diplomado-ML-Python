@@ -1,13 +1,15 @@
-#importamos librerias 
+#importamos librerias a utilizar en el flujo
 import random
 import numpy as np
 
-"""Basado en el código entregado de vectores que esta en el archivo de
-inducción favor ajustar para que se determine el valor de ventas por
-referencia y día teniendo en cuenta que las ventas son de una semana 
-de lunes a viernes. Adicional determinar la venta mayor y la venta
-menor indicando la referencia"""
+"""
+Enunciado de la actividad:
+Basado en el código entregado de vectores que esta en el archivo de inducción favor ajustar para que
+se determine el valor de ventas por referencia y día teniendo en cuenta que las ventas son de una semana 
+de lunes a viernes. Adicional determinar la venta mayor y la venta menor indicando la referencia
+"""
 
+#se crea una matriz 7*5 con 0, donde las filas seran para las referencias y columnas para los dias
 diasReferencia = np.zeros(35, dtype=np.int64).reshape(7, 5)
 diasReferenciaVentas = np.zeros(35, dtype=np.int64).reshape(7, 5)
 referenciasPrecio = {
@@ -93,7 +95,8 @@ print("\nreferencia de papas menos vendida")
 print([key for key, value in ventasTotales.items() if value == min(ventasTotales.values())]) #Min Ventas
 
 if __name__=='__main__':
-    pass
-
-
-
+    diasReferencia=ingresarVentas(diasReferencia,referencias,dias)
+    ventasTotales=sumarVentasDias(diasReferencia)
+    print(diasReferencia)
+    print(ventasTotales)
+    
