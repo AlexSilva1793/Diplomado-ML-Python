@@ -69,7 +69,7 @@ def sumarVentasDiasP(diasReferencia):
     return ventasDiasP
 
 #Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
-def sumarVentasReferenciasU(diasReferencia):
+def sumarVentasReferenciasU(diasReferencia,referencias,dias):
     p=0
     sumatoria=0
     ventasReferenciasU={}
@@ -136,39 +136,79 @@ def mostrarMenorMayorReferecia(ventaMenorMayor,ventasPorValorReferenciaVentas):
         print("+--------------------+----------+")
     return "Gracias"
 
+def mostrarUnidadesReferencias(ingresar,referencias):
+    print("+--------------------+----------+----------+----------+----------+-----------")
+    print("|                     Unidades vendidas por referencia dia                  |")
+    print("+--------------------+----------+----------+----------+----------+----------+")
+    print("|Referencia          |Lunes     |Martes    |Miercoles |Jueves    |Viernes   |")
+    print("+--------------------+----------+----------+----------+----------+----------+")
+    p=0
+    tmp=[]
+    for g in referencias:
+        for i in range(5):
+            tmp.append(ingresar[p,i])
+        cadena = "|{:>20}|{:>10}|{:>10}|{:>10}|{:>10}|{:>10}|".format(g,tmp[0],tmp[1],tmp[2],tmp[3],tmp[4])
+        print(cadena)
+        tmp=[]
+        print("+--------------------+----------+----------+----------+----------+----------+")
+        p+=1
+    print()
+    return True
+
+def mostrarValorReferencias(ingresar,referencias):
+    print("+--------------------+----------+----------+----------+----------+-----------")
+    print("|                        Valor ventas referencia por dia                    |")
+    print("+--------------------+----------+----------+----------+----------+----------+")
+    print("|Referencia          |Lunes     |Martes    |Miercoles |Jueves    |Viernes   |")
+    print("+--------------------+----------+----------+----------+----------+----------+")
+    p=0
+    tmp=[]
+    for g in referencias:
+        for i in range(5):
+            tmp.append(ingresar[p,i])
+        cadena = "|{:>20}|{:>10}|{:>10}|{:>10}|{:>10}|{:>10}|".format(g,tmp[0],tmp[1],tmp[2],tmp[3],tmp[4])
+        print(cadena)
+        tmp=[]
+        print("+--------------------+----------+----------+----------+----------+----------+")
+        p+=1
+    print()
+    return True
+
+def saltoLinea():
+    print("""
+          *******************************
+          """)
+
 def run():
     ingresar=ingresarVentas(diasReferencia,referencias,dias)
-    ventasPorValorReferenciaUnidades=sumarVentasReferenciasU(ingresar[0])
+    mostrarUnidadesReferencias(ingresar[0],referencias)
+    mostrarValorReferencias(ingresar[1],referencias)
+    ventasPorValorReferenciaUnidades=sumarVentasReferenciasU(ingresar[0],referencias,dias)
     ventasPorValorReferenciaVentas=sumarVentasReferenciasP(ingresar[1])
     ventasPorValorDiaUnidades=sumarVentasDiasU(ingresar[0])
     ventasPorValorDiaVentas=sumarVentasDiasP(ingresar[1])
     ventasTotalSemanaUnidades=ventasTotalUnidades(ingresar[0])
     ventasTotalSemanaPesos=ventasTotalValor(ingresar[1])
     ventaMenorMayor=encontrarMayorMenor(ventasPorValorReferenciaVentas)
-    print("Registro unidades por referencia")
-    print(ingresar[0])
-    print("******************************************")
-    print("Registro de valor por referencia")
-    print(ingresar[1])
-    print("******************************************")
-    print("Registro dias por total de unidades",end="=>")
+    saltoLinea()
+    print("Registro dias por total de unidades",end="=> ")
     print(ventasPorValorDiaUnidades)
-    print("******************************************")
-    print("Registro dias por total de pesos",end="=>")
+    saltoLinea()
+    print("Registro dias por total de pesos",end="=> ")
     print(ventasPorValorDiaVentas)
-    print("******************************************")
-    print("Registro referencias por total de unidades",end="=>")
+    saltoLinea()
+    print("Registro referencias por total de unidades",end="=> ")
     print(ventasPorValorReferenciaUnidades)
-    print("******************************************")
-    print("Registro referencias por total de pesos",end="=>")
+    saltoLinea()
+    print("Registro referencias por total de pesos",end="=> ")
     print(ventasPorValorReferenciaVentas)
-    print("******************************************")
-    print("Total de unidades en la semana",end="=>")
+    saltoLinea()
+    print("Total de unidades en la semana",end="=> ")
     print(ventasTotalSemanaUnidades)
-    print("******************************************")
-    print("Total de Pesos en la semana",end="=>")
+    saltoLinea()
+    print("Total de Pesos en la semana",end="=> ")
     print(ventasTotalSemanaPesos)
-    print("******************************************")
+    saltoLinea()
     mostrarMenorMayorReferecia(ventaMenorMayor,ventasPorValorReferenciaVentas)
     print("""
           *******************************
@@ -180,7 +220,6 @@ def run():
           |Eivar Alexander Silva Gaitan |
           *******************************
           """)
-    exit()
     
 if __name__=='__main__':
     run()
