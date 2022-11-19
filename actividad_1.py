@@ -2,6 +2,8 @@
 import random
 import numpy as np
 
+
+
 """
 Enunciado de la actividad:
 Basado en el código entregado de vectores que esta en el archivo de inducción favor ajustar para que
@@ -12,6 +14,7 @@ de lunes a viernes. Adicional determinar la venta mayor y la venta menor indican
 #se crea una matriz 7*5 con 0, donde las filas seran para las referencias y columnas para los dias
 diasReferencia = np.zeros(35, dtype=np.int64).reshape(7, 5)
 diasReferenciaVentas = np.zeros(35, dtype=np.int64).reshape(7, 5)
+dias=['Lunes', 'Martes','Miercoles','Jueves','Viernes']
 referenciasPrecio = {
     'Papas Fritas Limón':1200,
     'Papas Fritas Pollo':1300,
@@ -29,10 +32,56 @@ referencias=list(referenciasPrecio.keys())
 
 
 #ingresar ventas
+def ingresarVentas(diasReferencia,referencias,dias):
+    for i in range(len(diasReferencia)):
+        print(f"Por favor ingresa las ventas para la refencia {referencias[i]} :")
+        for t in range(5):
+            print(f"Del dia {dias[t]}",end='=>')
+            print()
+            diasReferencia[i,t]=random.randint(10, 20)
+            #diasReferencia[i,t]=capturarUnidades(dias[t])
+            diasReferenciaVentas[i,t]=diasReferencia[i,t]*referenciasPrecio[referencias[i]]
+    #return diasReferencia
+    sumarVentasDiasP(diasReferenciaVentas)
+    sumarVentasDias(diasReferencia,diasReferenciaVentas)
+    
+#Se crea funcion para en caso que sea vacio o letra no se rompa el codigo e inserte 0
+def capturarUnidades(dia):
+    entrada=input(f"Del dia {dia}=>")
+    if not entrada or not entrada.isdigit():
+        return 0
+    return int(entrada)
 
+#sumar ventas por dia sobre todas las referencias
+def sumarVentasDiasP(diasReferenciaVentas):
+    p=0
+    sumatoria=0
+    ventasDiasTotales={}
+    for g in dias:
+        for i in range(len(diasReferenciaVentas)):
+            sumatoria=sumatoria + diasReferenciaVentas[i,p]
+        ventasDiasTotales.update({g:sumatoria})
+        sumatoria=0
+        p=p+1
+    print(diasReferenciaVentas)
+    print(ventasDiasTotales)
+    exit()
 
-for i in range(len(diasReferencia)):
-  
+#Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
+def sumarVentasDias(diasReferencia,diasReferenciaVentas):
+    p=0
+    sumatoria=0
+    ventasTotales={}
+    for g in referencias:
+        for t in range(5):
+            sumatoria=sumatoria + diasReferencia[p,t]
+        ventasTotales.update({g:sumatoria})
+        sumatoria=0
+        p=+1
+    print(diasReferencia)
+    print(ventasTotales)
+    print(diasReferenciaVentas)
+    exit()
 
     print(f"por favor ingresa las ventas para la referencia {referencias[i]} :")
     for t in range(5):
@@ -42,59 +91,16 @@ for i in range(len(diasReferencia)):
         print(diasReferencia[i,t])
    
 
-#sumar ventas semanal por referencia unidad
-p=0
-sumatoriaUnidades=0
-ventasTotales={}
-for g in referencias:
-    for t in range(5):
-        sumatoriaUnidades=sumatoriaUnidades + diasReferencia[p,t]
-    ventasTotales.update({g:sumatoriaUnidades})
-    sumatoriaUnidades=0
-    p=p+1
-
-#Total de ventas de paquetes de papas cada dia: (colocar dias de la semana)
-totalUnidadesDias=[]
-totalUnidadesDias = np.sum(diasReferencia, axis=0)
-totalUnidadesDiaNombres=""
-for l in range(len(dias)):
-    totalUnidadesDiaNombres+= f"\nEl dia {dias[l]} se vendieron {totalUnidadesDias[l]} paquetes de papas "
-
-
-#Total valor venta diaria referencia
-
-print(f"-----valor dia: {diasReferenciaVentas}")
+def run():
+    diasReferencia=ingresarVentas(diasReferencia,referencias,dias)
+    ventasTotales=sumarVentasDias(diasReferencia)
 
 
 
-#valor de ventas de cada referencia en la semana:
-totalValorReferenciaSemana=""
-#totalValorReferencia=[]
-totalUnidadReferencia=np.sum(diasReferencia, axis=1)
-
-for j in range(len(diasReferencia)):
-   # totalValorReferencia.append(totalUnidadReferencia[j] * precios[j])
-
-    totalValorReferenciaSemana+=f"unidades referencia {referencias[j]} :{totalUnidadReferencia[j]} precio referencia {referenciasPrecio[referencias[j]]} total = {totalUnidadReferencia[j]*referenciasPrecio[referencias[j]]} \n "
-
-
-
-#encontrar la venta mayor y menor durante la semana
-#print(f"\nVentas Totales de cada una de las referencias de papas \n{ventasTotales}")
-print(f"\n Matriz ventas\n{diasReferencia}")
-print(f"Total de unidades vendidas: {np.sum(diasReferencia)}")
-print(f"Total Ventas en dinero {np.sum(diasReferenciaVentas)}")
-print(f"\nTotal de ventas diario de papas: {totalUnidadesDiaNombres}")
-#print(f"\nTotal de ventas por valor cada dia: {totalValorDias}")
-
-#print(f"\nValor de ventas de cada referencia en la semana: {totalValorReferencia}")
-print(f"\nValor total de ventas de cada referencia semanalmente:\n {totalValorReferenciaSemana}")
-print("\nreferencia de papas mas vendida")
-print([key for key, value in ventasTotales.items() if value == max(ventasTotales.values())]) #Max Ventas
-print("\nreferencia de papas menos vendida")
-print([key for key, value in ventasTotales.items() if value == min(ventasTotales.values())]) #Min Ventas
+            
 
 if __name__=='__main__':
+    #menuConsultar()
     diasReferencia=ingresarVentas(diasReferencia,referencias,dias)
     ventasTotales=sumarVentasDias(diasReferencia)
     print(diasReferencia)
