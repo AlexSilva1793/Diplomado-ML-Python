@@ -53,17 +53,16 @@ for g in referencias:
 #Total de ventas de paquetes de papas cada dia: (colocar dias de la semana)
 totalUnidadesDias=[]
 totalUnidadesDias = np.sum(diasReferencia, axis=0)
+totalUnidadesDiaNombres=""
+for l in range(len(dias)):
+    totalUnidadesDiaNombres+= f"\nEl dia {dias[l]} se vendieron {totalUnidadesDias[l]} paquetes de papas "
+
 
 #Total valor venta diaria referencia
-totalValorDia = []
-for h in range (len(dias)):
-    print(f"  {dias[h]}")
-    for k in range(len(diasReferencia)):
-        print(f"referencias {k} dato celda {diasReferencia[k,h]} ")
-        #totalValorDia.append[k]+= diasReferencia[k,h] * precios[k]
+
 print(f"-----valor dia: {diasReferenciaVentas}")
 
-print(f"-------Total Ventas {np.sum(diasReferenciaVentas)}")
+
 
 #valor de ventas de cada referencia en la semana:
 totalValorReferenciaSemana=""
@@ -81,7 +80,8 @@ for j in range(len(diasReferencia)):
 #print(f"\nVentas Totales de cada una de las referencias de papas \n{ventasTotales}")
 print(f"\n Matriz ventas\n{diasReferencia}")
 print(f"Total de unidades vendidas: {np.sum(diasReferencia)}")
-print(f"\nTotal de ventas diario por unidad de cada referencia: {totalUnidadesDias}")
+print(f"Total Ventas en dinero {np.sum(diasReferenciaVentas)}")
+print(f"\nTotal de ventas diario de papas: {totalUnidadesDiaNombres}")
 #print(f"\nTotal de ventas por valor cada dia: {totalValorDias}")
 
 #print(f"\nValor de ventas de cada referencia en la semana: {totalValorReferencia}")
