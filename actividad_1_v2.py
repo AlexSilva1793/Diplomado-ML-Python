@@ -43,43 +43,56 @@ def capturarUnidades(dia):
     return int(entrada)
 
 #sumar ventas por dia sobre todas las referencias
-def sumarVentasDiasP(diasReferenciaVentas):
+def sumarVentasDiasU(diasReferenciaVentas):
     p=0
     sumatoria=0
-    ventasDiasTotales={}
+    ventasDiasU={}
     for g in dias:
         for i in range(len(diasReferenciaVentas)):
             sumatoria=sumatoria + diasReferenciaVentas[i,p]
-        ventasDiasTotales.update({g:sumatoria})
+        ventasDiasU.update({g:sumatoria})
         sumatoria=0
         p=p+1
-    return ventasDiasTotales
+    return ventasDiasU
 
 #sumar ventas por dia sobre todas las referencias
-def sumarVentasDiasPU(diasReferencia):
+def sumarVentasDiasP(diasReferencia):
     p=0
     sumatoria=0
-    ventasDiasTotales={}
+    ventasDiasP={}
     for g in dias:
         for i in range(len(diasReferencia)):
             sumatoria=sumatoria + diasReferencia[i,p]
-        ventasDiasTotales.update({g:sumatoria})
+        ventasDiasP.update({g:sumatoria})
         sumatoria=0
         p=p+1
-    return ventasDiasTotales
+    return ventasDiasP
 
 #Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
-def sumarVentasDiasU(diasReferencia):
+def sumarVentasReferenciasU(diasReferencia):
     p=0
     sumatoria=0
-    ventasTotales={}
+    ventasReferenciasU={}
     for g in referencias:
         for t in range(5):
             sumatoria=sumatoria + diasReferencia[p,t]
-        ventasTotales.update({g:sumatoria})
+        ventasReferenciasU.update({g:sumatoria})
         sumatoria=0
         p=+1
-    return ventasTotales
+    return ventasReferenciasU
+
+#Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
+def sumarVentasReferenciasP(diasReferenciaVentas):
+    p=0
+    sumatoria=0
+    ventasReferenciasP={}
+    for g in referencias:
+        for t in range(5):
+            sumatoria=sumatoria + diasReferenciaVentas[p,t]
+        ventasReferenciasP.update({g:sumatoria})
+        sumatoria=0
+        p=+1
+    return ventasReferenciasP
 
 #sumar todas las ventas por unidad
 def ventasTotalUnidades(diasReferencia):
@@ -95,10 +108,6 @@ def encontrarMayorMenor(ventasTotales):
     ventaMenor=[key for key, value in ventasTotales.items() if value == min(ventasTotales.values())]
     return ventaMayor,ventaMenor
 
-#encontrar mayor y menor en las ventas
-def encontrarMayorMenor():
-    pass
-
 #encontrar ventas de unidades por cada referencia en la semana
 def sumarUnidadesReferencias():
     pass
@@ -109,21 +118,34 @@ def sumarUnidadesReferencias():
 
 def run():
     ingresar=ingresarVentas(diasReferencia,referencias,dias)
-    ventasPorValorDiaUnidades=sumarVentasDiasPU(ingresar[0])
+    ventasPorValorReferenciaUnidades=sumarVentasReferenciasU(ingresar[0])
+    ventasPorValorReferenciaVentas=sumarVentasReferenciasP(ingresar[1])
+    ventasPorValorDiaUnidades=sumarVentasDiasU(ingresar[0])
     ventasPorValorDiaVentas=sumarVentasDiasP(ingresar[1])
     ventasTotalSemanaUnidades=ventasTotalUnidades(ingresar[0])
     ventasTotalSemanaPesos=ventasTotalValor(ingresar[1])
                                             
     print("Registro unidades por referencia")
     print(ingresar[0])
+    print("******************************************")
     print("Registro de valor por referencia")
     print(ingresar[1])
+    print("******************************************")
     print("Registro dias por total de unidades")
     print(ventasPorValorDiaUnidades)
+    print("******************************************")
     print("Registro dias por total de pesos")
     print(ventasPorValorDiaVentas)
+    print("******************************************")
+    print("Registro referencias por total de unidades")
+    print(ventasPorValorReferenciaUnidades)
+    print("******************************************")
+    print("Registro referencias por total de pesos")
+    print(ventasPorValorReferenciaVentas)
+    print("******************************************")
     print("Total de unidades en la semana")
     print(ventasTotalSemanaUnidades)
+    print("******************************************")
     print("Total de Pesos en la semana")
     print(ventasTotalSemanaPesos)
     exit()

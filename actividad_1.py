@@ -2,6 +2,8 @@
 import random
 import numpy as np
 
+
+
 """
 Enunciado de la actividad:
 Basado en el código entregado de vectores que esta en el archivo de inducción favor ajustar para que
@@ -11,6 +13,7 @@ de lunes a viernes. Adicional determinar la venta mayor y la venta menor indican
 
 #se crea una matriz 7*5 con 0, donde las filas seran para las referencias y columnas para los dias
 diasReferencia = np.zeros(35, dtype=np.int64).reshape(7, 5)
+diasReferenciaVentas = np.zeros(35, dtype=np.int64).reshape(7, 5)
 dias=['Lunes', 'Martes','Miercoles','Jueves','Viernes']
 referenciasPrecio = {
     'Papas Fritas Limón':1200,
@@ -28,12 +31,15 @@ def ingresarVentas(diasReferencia,referencias,dias):
     for i in range(len(diasReferencia)):
         print(f"Por favor ingresa las ventas para la refencia {referencias[i]} :")
         for t in range(5):
-            #print(f"Del dia {dias[t]}",end='=>')
-            #print()
-            #diasReferencia[i,t]=random.randint(10, 20)
-            diasReferencia[i,t]=capturarUnidades(dias[t])
-    return diasReferencia
-
+            print(f"Del dia {dias[t]}",end='=>')
+            print()
+            diasReferencia[i,t]=random.randint(10, 20)
+            #diasReferencia[i,t]=capturarUnidades(dias[t])
+            diasReferenciaVentas[i,t]=diasReferencia[i,t]*referenciasPrecio[referencias[i]]
+    #return diasReferencia
+    sumarVentasDiasP(diasReferenciaVentas)
+    sumarVentasDias(diasReferencia,diasReferenciaVentas)
+    
 #Se crea funcion para en caso que sea vacio o letra no se rompa el codigo e inserte 0
 def capturarUnidades(dia):
     entrada=input(f"Del dia {dia}=>")
@@ -41,8 +47,23 @@ def capturarUnidades(dia):
         return 0
     return int(entrada)
 
+#sumar ventas por dia sobre todas las referencias
+def sumarVentasDiasP(diasReferenciaVentas):
+    p=0
+    sumatoria=0
+    ventasDiasTotales={}
+    for g in dias:
+        for i in range(len(diasReferenciaVentas)):
+            sumatoria=sumatoria + diasReferenciaVentas[i,p]
+        ventasDiasTotales.update({g:sumatoria})
+        sumatoria=0
+        p=p+1
+    print(diasReferenciaVentas)
+    print(ventasDiasTotales)
+    exit()
+
 #Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
-def sumarVentasDias(diasReferencia):
+def sumarVentasDias(diasReferencia,diasReferenciaVentas):
     p=0
     sumatoria=0
     ventasTotales={}
@@ -52,7 +73,10 @@ def sumarVentasDias(diasReferencia):
         ventasTotales.update({g:sumatoria})
         sumatoria=0
         p=+1
-    return ventasTotales
+    print(diasReferencia)
+    print(ventasTotales)
+    print(diasReferenciaVentas)
+    exit()
 
 #encontrar la venta mayor y menor durante la semana por referencia
 def encontrarMayorMenor(ventasTotales):
@@ -63,8 +87,13 @@ def encontrarMayorMenor(ventasTotales):
 def run():
     diasReferencia=ingresarVentas(diasReferencia,referencias,dias)
     ventasTotales=sumarVentasDias(diasReferencia)
- 
+
+
+
+            
+
 if __name__=='__main__':
+    #menuConsultar()
     diasReferencia=ingresarVentas(diasReferencia,referencias,dias)
     ventasTotales=sumarVentasDias(diasReferencia)
     print(diasReferencia)
