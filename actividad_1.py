@@ -39,7 +39,7 @@ for g in referencias:
     sumatoriaUnidades=0
     p=p+1
 
-#Total de ventas por unidad cada dia
+#Total de ventas unidad por referencia cada dia
 totalUnidadesDias=[]
 totalUnidadesDias = np.sum(diasReferencia, axis=0)
 
@@ -52,7 +52,7 @@ totalUnidadesDias = np.sum(diasReferencia, axis=0)
 #encontrar la venta mayor y menor durante la semana
 print(f"\nVentas Totales de cada una de las referencias de papas \n{ventasTotales}")
 print(diasReferencia)
-print(f"\nTotal de ventas por unidad cada dia: {totalUnidadesDias}")
+print(f"\nTotal de ventas unidad por referencia cada dia: {totalUnidadesDias}")
 #print(f"\nTotal de ventas por valor cada dia: {totalValorDias}")
 
 print("\nreferencia de papas mas vendida")
