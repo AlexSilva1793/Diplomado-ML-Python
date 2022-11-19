@@ -21,6 +21,7 @@ referenciasPrecio = {
     }
 dias=['Lunes', 'Martes','Miercoles','Jueves','Viernes']
 totalUnidadesDias=[]
+
 referencias=list(referenciasPrecio.keys())
 #precios=list(referenciasPrecio.values())
 
@@ -31,7 +32,7 @@ referencias=list(referenciasPrecio.keys())
 for i in range(len(diasReferencia)):
   
 
-    print(f"por favor ingresa las ventas para la refencia {referencias[i]} :")
+    print(f"por favor ingresa las ventas para la referencia {referencias[i]} :")
     for t in range(5):
         print(f"del dia {dias[t]} :")
         diasReferencia[i,t]=random.randint(1, 10)
