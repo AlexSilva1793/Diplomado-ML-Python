@@ -3,7 +3,7 @@
 #Tipos de divisas
 currencyTypesColombia={
     "USD":4948.00,
-    "CLP":5077.54,
+    "CLP":4948.00,
     "ARS":34.90,
     "MEX":3273.00
 }
