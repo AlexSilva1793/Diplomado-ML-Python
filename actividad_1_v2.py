@@ -1,6 +1,7 @@
 #importamos librerias a utilizar en el flujo
 import random
 import numpy as np
+
 """
 Enunciado de la actividad:
 Basado en el código entregado de vectores que esta en el archivo de inducción favor ajustar para que
