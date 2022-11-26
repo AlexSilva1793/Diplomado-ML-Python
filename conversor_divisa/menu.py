@@ -1,5 +1,5 @@
-import os 
-import time
+#import os 
+#import time
 import currencyTypes as monedas
 
 menu_inicial=True
