@@ -33,3 +33,21 @@ currencyTypesArgentina={
     "COL":0.034,
     "CLP":0.18
 }
+
+def asignarMonedaCambiar(opcion):
+    if opcion == 1:
+        tmp = currencyTypesUsa
+        tmp1 = "USA"
+    elif opcion == 2:
+        tmp = currencyTypesColombia
+        tmp1 = "Colombia"
+    elif opcion == 3:
+        tmp = currencyTypesChile
+        tmp1 = "Chile"
+    elif opcion == 4:
+        tmp = currencyTypesMexico
+        tmp1 = "Mexico"
+    else:        
+        tmp = currencyTypesArgentina
+        tmp1 = "Argentina"
+    return tmp,tmp1
