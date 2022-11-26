@@ -3,6 +3,7 @@ import time
 import currencyTypes as monedas
 
 menu_inicial=True
+valor_suma_cambiar=0
 
 def asignarMonedaCambiar(opcion):
     if opcion == 1:
@@ -18,20 +19,14 @@ def asignarMonedaCambiar(opcion):
         tmp = monedas.currencyTypesMexico
         tmp1 = f"monedas.currencyTypesMexico"
     else:
+        
         tmp = monedas.currencyTypesArgentina
         tmp1 = f"monedas.currencyTypesArgentina"
     return tmp,tmp1
 
 def menuInicial():
     while (menu_inicial):
-        opcion = input("""
-                    Bienvenido a la divisa CUN:
-                    1) Para comprar Dolares.
-                    2) Para comprar Pesos Colombianos.
-                    3) Para comprar Pesos Chilenos.
-                    4) Para comprar Pesos Mexicanos.
-                    5) Para comprar Pesos Argentinos.
-                    =>""")
+        opcion = input("Bienvenido a la divisa CUN:\n1) Para comprar Dolares.\n2) Para comprar Pesos Colombianos.\n3) Para comprar Pesos Chilenos.\n4) Para comprar Pesos Mexicanos.\n5) Para comprar Pesos Argentinos.\n=>")
         if opcion.isdigit() and int(opcion) in range(1,6):
             os.system("cls")
             opcion=int(opcion)
@@ -39,47 +34,38 @@ def menuInicial():
             moneda_origen=monedasHabilitadas[0]
             tipo_pais=tuple(moneda_origen.keys())
             while (menu_inicial):
-                opcion_1 = input(f"""
-                    Por favor ingrese de donde es la monera con la que pagara:
-                    1) {tipo_pais[0]}.
-                    2) {tipo_pais[1]}.
-                    3) {tipo_pais[2]}.
-                    4) {tipo_pais[3]}.
-                    5) Volver al menú anterior.
-                    =>""")
-                os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
+                opcion_1 = input(f"Por favor ingrese de donde es la monera con la que pagara:\n\n1) {tipo_pais[0]}.\n2) {tipo_pais[1]}.\n3) {tipo_pais[2]}.\n4) {tipo_pais[3]}.\n5) Volver al menú anterior.\n=>")
                 if opcion_1.isdigit() and int(opcion_1) in range(1,6):
                     if opcion_1 == "5":
                         break
                     else:
                         procedimientoCambiar={}
                         procedimientoCambiar.update({"DESTINO":monedasHabilitadas[1]})
-                        procedimientoCambiar.update({"ORIGEN":tipo_pais[int(opcion_1)]})
-                        procedimientoCambiar.update({"CANTIDAD":ingresarSumaCambiar()})
+                        procedimientoCambiar.update({"ORIGEN":tipo_pais[int(opcion_1) - 1]})
+                        procedimientoCambiar.update({"CANTIDAD":ingresarSumaCambiar(valor_suma_cambiar)})
                         os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
                         return procedimientoCambiar
                 else:
-                    print("""
-                          Por favor seleciones una opción valida.""")
+                    print("Por favor seleciones una opción valida.")
                     time.sleep(2.0)
                     os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
                 
         else:
-            print("""
-                  Por favor seleciones una opción valida.""")
+            print("Por favor seleciones una opción valida.")
             time.sleep(2.0)
             os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
 
-def ingresarSumaCambiar():
+def ingresarSumaCambiar(valor_suma_cambiar):
     while (menu_inicial):
-        cantidad=input("""
-                       Ingresa la cantidad que va a cambiar: """)
+        cantidad=input("Ingresa la cantidad que va a cambiar: ")
         if cantidad.isdigit():
             os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
-            return cantidad
+            return int(cantidad)+valor_suma_cambiar
         else:
             os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
 
 if __name__=='__main__':
-    print(menuInicial())
-    print("Hola")
+    datos_operacion_cambio=menuInicial()
+    print(datos_operacion_cambio)
+    
+    

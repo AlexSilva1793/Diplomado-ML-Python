@@ -2,52 +2,40 @@
 
 #Tipos de divisas
 currencyTypesColombia={
-    "USD":4948.00,
-    "CLP":4948.00,
-    "ARS":34.90,
-    "MEX":3273.00
+    "USD":4865.57,
+    "CLP":5.28,
+    "ARS":29.43,
+    "MEX":251.57
 }
 
 currencyTypesUsa={
-    "COL":4948.00,
-    "MEX":5077.54,
-    "ARS":34.90,
-    "CLP":3684.60,
+    "COL":0.00020,
+    "MEX":0.052,
+    "ARS":0.0060,
+    "CLP":0.0011,
 }
 
 currencyTypesMexico={
-    "USD":4948.00,
-    "COL":5077.54,
-    "ARS":34.90,
-    "CLP":3684.60,
+    "USD":19.34,
+    "COL":0.0039,
+    "ARS":0.12,
+    "CLP":0.021,
 }
 
 currencyTypesChile={
-    "USD":4948.00,
-    "COL":5077.54,
-    "MEX":34.90,
-    "ARS":3684.60,
+    "USD":922.23,
+    "COL":0.19,
+    "MEX":47.68,
+    "ARS":5.58,
 }
 
 currencyTypesArgentina={
-    "USD":4948.00,
-    "MEX":5077.54,
-    "COL":34.90,
-    "ARS":3684.60,
+    "USD":165.31,
+    "MEX":8.55,
+    "COL":0.034,
+    "CLP":0.18,
+    "CLPOPERACION":"*"
 }
 
-#Tipos de nombre sobre los paises
-paises= {
-"COL":("COLOMBIA","COLOMBIANO","COLOMBIANA"),
-"ARS":("ARGENTINA","ARGENTINO"),
-"USA":("ESTADOS UNIDOS","USA"),
-"CLP":("CHILENO","CHILE","CHILENA"),
-"MEX":("MEXICANO","MEXICO","MEXICANA")
-}
-
-#encontrar las siglas del pais
-def encontrarSiglas(siglaEncontrar):
-    for i in paises.keys():
-        if siglaEncontrar in paises[i]:
-            siglaOrigen=i
-            return siglaOrigen
+def validarTipoOperacion(datos_operacion_cambio):
+    pass
