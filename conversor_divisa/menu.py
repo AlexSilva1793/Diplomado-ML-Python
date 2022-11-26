@@ -1,13 +1,14 @@
-import os 
-import time
+#import os 
+#import time
 import currencyTypes as monedas
+
 
 menu_inicial=True
 valor_suma_cambiar=0
 
 def menuInicial():
     while (menu_inicial):
-        opcion = input("Bienvenido a la divisa CUN:\n1) Para comprar Dolares.\n2) Para comprar Pesos Colombianos.\n3) Para comprar Pesos Chilenos.\n4) Para comprar Pesos Mexicanos.\n5) Para comprar Pesos Argentinos.\n=> ")
+        opcion = input("Bienvenido a la divisa CUN:\n1) Quiero Dolares.\n2) Quiero Pesos Colombianos.\n3) Quiero Pesos Chilenos.\n4) Quiero Pesos Mexicanos.\n5) Quiero Pesos Argentinos.\n=> ")
         if opcion.isdigit() and int(opcion) in range(1,6):
             #os.system("cls")
             opcion=int(opcion)
@@ -23,8 +24,11 @@ def menuInicial():
                         procedimientoCambiar={}
                         procedimientoCambiar.update({"DESTINO":monedasHabilitadas[1]})
                         procedimientoCambiar.update({"ORIGEN":tipo_pais[int(opcion_1) - 1]})
-                        procedimientoCambiar.update({"ORIGEN_VALOR":moneda_origen[tipo_pais[int(opcion_1) - 1]]})
+                        procedimientoCambiar.update({"ORIGEN_VALOR":moneda_origen[tipo_pais[int(opcion_1) - 1]][0]})
+                        procedimientoCambiar.update({"ORIGEN_VALOR_PORCENTAJE":moneda_origen[tipo_pais[int(opcion_1) - 1]][1]})
                         procedimientoCambiar.update({"CANTIDAD":ingresarSumaCambiar(valor_suma_cambiar)})
+                        #{'DESTINO': 'Colombia', 'ORIGEN': 'USD',
+                        #'ORIGEN_VALOR': 4865.57, 'ORIGEN_VALOR_PORCENTAJE': 0.2, 'CANTIDAD': 1000000}
                         #os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
                         return procedimientoCambiar
                 else:
@@ -47,12 +51,15 @@ def ingresarSumaCambiar(valor_suma_cambiar):
             #os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
 
 def realizarOperacion(datos_operacion_cambio):
-    #os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
     destino=datos_operacion_cambio["DESTINO"]
     valorOrigen=float(datos_operacion_cambio["ORIGEN_VALOR"])
-    cantidad=float(datos_operacion_cambio["CANTIDAD"])
-    resultadoCambio=cantidad*valorOrigen 
-    print(f"su cantidad ingresada a la moneda {destino} es : {resultadoCambio}")
+    cantidad=datos_operacion_cambio["CANTIDAD"]
+    porcentaSobreOperacion=float(datos_operacion_cambio["ORIGEN_VALOR_PORCENTAJE"])
+    ganancia=round(valorOrigen*porcentaSobreOperacion,2)
+    resultadoCliente=round((valorOrigen-ganancia)*cantidad, 2)
+    precioOriginal=round(valorOrigen*cantidad,2)
+    print(f"La ganancia sobre la transacción es de: {precioOriginal-resultadoCliente}, el precio neto es: {precioOriginal} y el cambio para el cliente es: {resultadoCliente}")
+
     return True
 
 if __name__=='__main__':
