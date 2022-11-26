@@ -1,37 +1,37 @@
 #Tipos de divisas
 currencyTypesColombia={
-    "USD":4865.57,
-    "CLP":5.28,
-    "ARS":29.43,
-    "MEX":251.57
+    "USD":[4865.57,0.2],
+    "CLP":[5.28,0.12],
+    "ARS":[29.43,0.15],
+    "MEX":[251.57,0.1]
 }
 
 currencyTypesUsa={
-    "COL":0.00020,
-    "MEX":0.052,
-    "ARS":0.0060,
-    "CLP":0.0011
+    "COL":[0.00020,0.1],
+    "MEX":[0.052,0.12],
+    "ARS":[0.0060,0.19],
+    "CLP":[0.0011,0.2]
 }
 
 currencyTypesMexico={
-    "USD":19.34,
-    "COL":0.0039,
-    "ARS":0.12,
-    "CLP":0.021
+    "USD":[19.34,0.2],
+    "COL":[0.0039,0.2],
+    "ARS":[0.12,0.2],
+    "CLP":[0.021,0.2]
 }
 
 currencyTypesChile={
-    "USD":922.23,
-    "COL":0.19,
-    "MEX":47.68,
-    "ARS":5.58
+    "USD":[922.23,0.05],
+    "COL":[0.19,0.15],
+    "MEX":[47.68,0.11],
+    "ARS":[5.58,0.12]
 }
 
 currencyTypesArgentina={
-    "USD":165.31,
-    "MEX":8.55,
-    "COL":0.034,
-    "CLP":0.18
+    "USD":[165.31,0.2],
+    "MEX":[8.55,0.15],
+    "COL":[0.034,0.1],
+    "CLP":[0.18,0.2]
 }
 
 def asignarMonedaCambiar(opcion):
