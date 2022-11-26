@@ -9,6 +9,7 @@ def asignarMonedaCambiar(opcion):
     if opcion == 1:
         tmp = monedas.currencyTypesUsa
         tmp1 = f"monedas.currencyTypesUsa"
+        tmp2 = monedas.currencyTypesUsa["OPERADOR_REALIZAR"]
     elif opcion == 2:
         tmp = monedas.currencyTypesColombia
         tmp1 = f"monedas.currencyTypesColombia"
@@ -22,7 +23,7 @@ def asignarMonedaCambiar(opcion):
         
         tmp = monedas.currencyTypesArgentina
         tmp1 = f"monedas.currencyTypesArgentina"
-    return tmp,tmp1
+    return tmp,tmp1,tmp2
 
 def menuInicial():
     while (menu_inicial):
@@ -42,7 +43,9 @@ def menuInicial():
                         procedimientoCambiar={}
                         procedimientoCambiar.update({"DESTINO":monedasHabilitadas[1]})
                         procedimientoCambiar.update({"ORIGEN":tipo_pais[int(opcion_1) - 1]})
+                        procedimientoCambiar.update({"ORIGEN_VALOR":moneda_origen[tipo_pais[int(opcion_1) - 1]]})
                         procedimientoCambiar.update({"CANTIDAD":ingresarSumaCambiar(valor_suma_cambiar)})
+                        procedimientoCambiar.update({"OPERADOR":monedasHabilitadas[2]})
                         os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
                         return procedimientoCambiar
                 else:
@@ -64,8 +67,24 @@ def ingresarSumaCambiar(valor_suma_cambiar):
         else:
             os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
 
+def realizarOperacion(datos_operacion_cambio):
+    #{'DESTINO': 'monedas.currencyTypesUsa', 'ORIGEN': 'COL', 'ORIGEN_VALOR': 0.0002, 'CANTIDAD': 1, 'OPERADOR': '*'}
+    
+    valorOrigen=datos_operacion_cambio["ORIGEN_VALOR"]
+    operador=datos_operacion_cambio["OPERADOR"]
+    #print(f"valorOrigen--{valorOrigen}--operador--{operador}")
+    
+    if operador == "*":
+        resultadoCambio=float(datos_operacion_cambio["CANTIDAD"])*float(valorOrigen)
+    else:
+        resultadoCambio=float(datos_operacion_cambio["CANTIDAD"])/float(valorOrigen)
+    
+    print(f"su cantidad ingresada a la moneda {operador} es : {resultadoCambio}")
+    exit()
+
 if __name__=='__main__':
     datos_operacion_cambio=menuInicial()
     print(datos_operacion_cambio)
+    realizarOperacion(datos_operacion_cambio)
     
     

@@ -13,6 +13,7 @@ currencyTypesUsa={
     "MEX":0.052,
     "ARS":0.0060,
     "CLP":0.0011,
+    "OPERADOR_REALIZAR":"*"
 }
 
 currencyTypesMexico={
@@ -30,11 +31,10 @@ currencyTypesChile={
 }
 
 currencyTypesArgentina={
-    "USD":165.31,
-    "MEX":8.55,
-    "COL":0.034,
-    "CLP":0.18,
-    "CLPOPERACION":"*"
+    "USD":(165.31,"/"),
+    "MEX":(8.55,"/"),
+    "COL":(0.034,"/"),
+    "CLP":(0.18,"/")
 }
 
 def validarTipoOperacion(datos_operacion_cambio):
