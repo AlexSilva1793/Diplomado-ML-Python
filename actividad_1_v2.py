@@ -54,6 +54,16 @@ def sumarVentasDiasU(diasReferenciaVentas):
         ventasDiasU.update({g:sumatoria})
         sumatoria=0
         p+=1
+    print("+------------------------+----------+")
+    print("|Registro dias por total de unidades|")
+    print("+------------------------+----------+")
+    print("|Referencia          	 |Unidades  |")
+    print("+------------------------+----------+")
+    for t in ventasDiasU.keys():
+        valor=ventasDiasU[t]
+        cadena = "|{:<24}|{:>10}|".format(t, valor)
+        print(cadena)
+        print("+------------------------+----------+")
     return ventasDiasU
 
 #sumar ventas por dia sobre todas las referencias
@@ -67,6 +77,17 @@ def sumarVentasDiasP(diasReferencia):
         ventasDiasP.update({g:sumatoria})
         sumatoria=0
         p+=1
+    print("+------------------------+----------+")
+    print("|Registro dias por total de pesos   |")
+    print("+------------------------+----------+")
+    print("|Referencia          	 |Unidades  |")
+    print("+------------------------+----------+")
+    for t in ventasDiasP.keys():
+        valor=ventasDiasP[t]
+        valorT=f"$ {valor}"
+        cadena = "|{:<24}|{:>10}|".format(t, valorT)
+        print(cadena)
+        print("+------------------------+----------+")
     return ventasDiasP
 
 #Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
@@ -80,6 +101,16 @@ def sumarVentasReferenciasU(diasReferencia,referencias,dias):
         ventasReferenciasU.update({g:sumatoria})
         sumatoria=0
         p+=1
+    print("+------------------------+-------------------+")
+    print("|Registro referencias por total de unidades  |")
+    print("+------------------------+-------------------+")
+    print("|Referencia          	 |Unidades           |")
+    print("+------------------------+-------------------+")
+    for t in ventasReferenciasU.keys():
+        valor=ventasReferenciasU[t]
+        cadena = "|{:<24}|{:>19}|".format(t,valor)
+        print(cadena)
+        print("+------------------------+-------------------+")
     return ventasReferenciasU
 
 #Sumar las ventas por referencia de cada dia, se utilizaran variables auxiliares y se retorna un dict con las ventas
@@ -93,6 +124,17 @@ def sumarVentasReferenciasP(diasReferenciaVentas):
         ventasReferenciasP.update({g:sumatoria})
         sumatoria=0
         p+=1
+    print("+------------------------+-----------------+")
+    print("|Registro referencias por total de pesos   |")
+    print("+------------------------+-----------------+")
+    print("|Referencia          	 |Unidades         |")
+    print("+------------------------+-----------------+")
+    for t in ventasReferenciasP.keys():
+        valor=ventasReferenciasP[t]
+        valorT=f"$ {valor}"
+        cadena = "|{:<24}|{:>17}|".format(t, valorT)
+        print(cadena)
+        print("+------------------------+-----------------+")
     return ventasReferenciasP
 
 #sumar todas las ventas por unidad
@@ -120,7 +162,7 @@ def mostrarMenorMayorReferecia(ventaMenorMayor,ventasPorValorReferenciaVentas):
     for t in range(len(menor)):
         menorTmp=ventasPorValorReferenciaVentas[menor[t]]
         Referencia=menor[t]
-        cadena = "|{:<20}|{:>10}|".format(Referencia, menorTmp)
+        cadena = "|{:<20}|{:>10}|".format(Referencia, f"$ {menorTmp}")
         print(cadena)
         print("+--------------------+----------+")
         
@@ -132,7 +174,7 @@ def mostrarMenorMayorReferecia(ventaMenorMayor,ventasPorValorReferenciaVentas):
     for t in range(len(mayor)):
         mayorTmp=ventasPorValorReferenciaVentas[mayor[t]]
         Referencia=mayor[t]
-        cadena = "|{:<20}|{:>10}|".format(Referencia, mayorTmp)
+        cadena = "|{:<20}|{:>10}|".format(Referencia, f"$ {mayorTmp}")
         print(cadena)
         print("+--------------------+----------+")
     return "Gracias"
@@ -167,7 +209,7 @@ def mostrarValorReferencias(ingresar,referencias):
     for g in referencias:
         for i in range(5):
             tmp.append(ingresar[p,i])
-        cadena = "|{:>20}|{:>10}|{:>10}|{:>10}|{:>10}|{:>10}|".format(g,tmp[0],tmp[1],tmp[2],tmp[3],tmp[4])
+        cadena = "|{:>20}|{:>10}|{:>10}|{:>10}|{:>10}|{:>10}|".format(g,f"$ {tmp[0]}",f"$ {tmp[1]}",f"$ {tmp[2]}",f"$ {tmp[3]}",f"$ {tmp[4]}")
         print(cadena)
         tmp=[]
         print("+--------------------+----------+----------+----------+----------+----------+")
@@ -184,32 +226,25 @@ def run():
     ingresar=ingresarVentas(diasReferencia,referencias,dias)
     mostrarUnidadesReferencias(ingresar[0],referencias)
     mostrarValorReferencias(ingresar[1],referencias)
-    ventasPorValorReferenciaUnidades=sumarVentasReferenciasU(ingresar[0],referencias,dias)
     ventasPorValorReferenciaVentas=sumarVentasReferenciasP(ingresar[1])
+    ventasPorValorReferenciaUnidades=sumarVentasReferenciasU(ingresar[0],referencias,dias)
     ventasPorValorDiaUnidades=sumarVentasDiasU(ingresar[0])
     ventasPorValorDiaVentas=sumarVentasDiasP(ingresar[1])
     ventasTotalSemanaUnidades=ventasTotalUnidades(ingresar[0])
     ventasTotalSemanaPesos=ventasTotalValor(ingresar[1])
     ventaMenorMayor=encontrarMayorMenor(ventasPorValorReferenciaVentas)
-    saltoLinea()
-    print("Registro dias por total de unidades",end="=> ")
-    print(ventasPorValorDiaUnidades)
-    saltoLinea()
-    print("Registro dias por total de pesos",end="=> ")
-    print(ventasPorValorDiaVentas)
-    saltoLinea()
-    print("Registro referencias por total de unidades",end="=> ")
-    print(ventasPorValorReferenciaUnidades)
-    saltoLinea()
-    print("Registro referencias por total de pesos",end="=> ")
-    print(ventasPorValorReferenciaVentas)
-    saltoLinea()
-    print("Total de unidades en la semana",end="=> ")
-    print(ventasTotalSemanaUnidades)
-    saltoLinea()
-    print("Total de Pesos en la semana",end="=> ")
-    print(ventasTotalSemanaPesos)
-    saltoLinea()
+    print("+------------------------------+")
+    print("|Total de unidades en la semana|")
+    print("+------------------------------+")
+    cadena = "|{:<30}|".format(f"          {ventasTotalSemanaUnidades}")
+    print(cadena)
+    print("+------------------------------+")
+    print("+---------------------------+")
+    print("|Total de Pesos en la semana|")
+    print("+---------------------------+")
+    cadena = "|{:<27}|".format(f"         $ {ventasTotalSemanaPesos}")
+    print(cadena)
+    print("+---------------------------+")
     mostrarMenorMayorReferecia(ventaMenorMayor,ventasPorValorReferenciaVentas)
     print("""
           *******************************
